@@ -2,32 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+div.input{
+    @apply flex justify-between items-center px-2 border gap-2 rounded-lg; 
+}
+div input+*{
+    color: #CBD5E1;
+}
+div input{
+    @apply w-full py-2 px-2 bg-transparent;
+}
+div input:focus{
+    @apply outline-none   
+}
+div input:focus+*{
+    @apply text-primary;
+}
+div input:not([typr=email])~span:hover{
+    @apply text-primary;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+select,
+input[type="email"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="text"]{
+    @apply block max-w-lg -mt-0.5 mb-1 rounded-xl;
+    @apply border px-4 p-2 border-gray-300 bg-gray-100;
+    @apply focus:border-sky-600 focus:outline-none;
+}
+input[type="email"]:disabled,
+input[type="search"]:disabled,
+input[type="password"]:disabled,
+input[type="number"]:disabled,
+input[type="tel"]:disabled,
+input[type="text"]:disabled{
+    @apply bg-gray-300 border-0 cursor-not-allowed text-gray-500 ;
+}
+label{
+    @apply text-gray-500 font-semibold text-xs leading-tight ;  
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+
+button, .button{ 
+    @apply flex justify-center w-full gap-2 text-gray-700 font-semibold;
+    @apply border border-gray-300 rounded-xl px-6 py-2;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+button[type="submit"], .submit , button.primary{
+    @apply border-primary bg-primary text-white;
+}
+button[type="submit"]:disabled, .submit:disabled{
+    @apply cursor-not-allowed bg-green-900/100;
+}
+
+div.tabs > * {
+    @apply rounded-l-xl rounded-r-lg   py-7  pl-4 ml-8;
+}
+div.tabs > *.active{
+    @apply  rounded-l-xl rounded-r-lg   py-7  pl-4 ml-8 bg-slate-200 text-primary border-r-2 border-orange-400 ;
 }
